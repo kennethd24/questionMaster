@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-function QuickPlay() {
+export default function QuickPlay() {
   return (
     <>
       <div>
@@ -20,5 +20,3 @@ function QuickPlay() {
     </>
   );
 }
-
-export default QuickPlay;
