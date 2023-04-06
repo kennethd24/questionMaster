@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { App, WrappedApp } from './App';
 
 describe('App', () => {
-  it('Renders hello World!', () => {
+  it('Renders Question Master', () => {
     // ARRANGE
     render(<WrappedApp />);
     // ACT
@@ -14,7 +14,7 @@ describe('App', () => {
       screen.getByRole('heading', {
         level: 1,
       })
-    ).toHaveTextContent('Hello World!');
+    ).toHaveTextContent('Question Master');
   });
   it('Renders not found if invalid path', () => {
     render(
