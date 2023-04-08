@@ -11,8 +11,8 @@ export function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/QuickPlay" element={<QuickPlay />} />
-      <Route path="/StartGame" element={<StartGame />} />
-      <Route path="/Results/:score" element={<Results />} />
+      <Route path="/StartGame/:name" element={<StartGame />} />
+      <Route path="/Results/:score/:name" element={<Results />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

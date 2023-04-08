@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function StartGame() {
@@ -8,7 +8,8 @@ export default function StartGame() {
       id: '622a1c377cc59eab6f950701',
       correctAnswer: 'Sandra Bullock',
       incorrectAnswers: ['Charlize Theron', 'Emma Thompson', 'Maggie Smith'],
-      question: 'Which actress has featured in films including Crash and Speed?',
+      question:
+        'Which actress has featured in films including Crash and Speed?',
       tags: ['film_and_tv'],
       type: 'Multiple Choice',
       difficulty: 'hard',
@@ -139,6 +140,7 @@ export default function StartGame() {
     },
   ];
 
+  const { name } = useParams();
   const [questionIndex, setQuestionIndex] = useState(0);
   const [rightAnswers, setRightAnswers] = useState(0);
   const { question, correctAnswer, incorrectAnswers } =
@@ -160,24 +162,26 @@ export default function StartGame() {
     setQuestionIndex(questionIndex + 1);
 
     if (questionIndex === sampleQuestion.length - 1) {
-      navigate(`/Results/${rightAnswers}`);
+      navigate(`/Results/${rightAnswers}/${name}`);
     }
   }
 
   return (
     <>
-      <div>
+      <div className="container">
+        <div>
+          <Link to="/">Home</Link>
+        </div>
         <div className="banner">
-          <h6>
-            <Link to="/">Home</Link>
-          </h6>
           <h6>
             {questionIndex + 1}/{sampleQuestion.length}
           </h6>
           <h6>Countdown Timer</h6>
           <h6>Score: {rightAnswers}</h6>
         </div>
-        <h3>{question}</h3>
+        <div>
+          <h3>{question}</h3>
+        </div>
       </div>
       {randomOrder.map((answer) => (
         <button type="submit" key={answer} onClick={() => verifyAnswer(answer)}>
