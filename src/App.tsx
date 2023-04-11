@@ -4,13 +4,15 @@ import Home from './pages/Home';
 import QuickPlay from './pages/QuickPlay';
 import StartGame from './pages/StartGame';
 import NotFound from './pages/NotFound';
+import Results from './pages/Results';
 
 export function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/QuickPlay" element={<QuickPlay />} />
-      <Route path="/StartGame" element={<StartGame />} />
+      <Route path="/StartGame/:name" element={<StartGame />} />
+      <Route path="/Results" element={<Results />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
