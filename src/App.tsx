@@ -12,7 +12,7 @@ export function App() {
       <Route path="/" element={<Home />} />
       <Route path="/QuickPlay" element={<QuickPlay />} />
       <Route path="/StartGame/:name" element={<StartGame />} />
-      <Route path="/Results/:score/:name" element={<Results />} />
+      <Route path="/Results" element={<Results />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

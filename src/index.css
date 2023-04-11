@@ -109,3 +109,6 @@ input {
 .container {
   width: 50%;
 }
+select {
+  text-align: center;
+}

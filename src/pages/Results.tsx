@@ -1,13 +1,14 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Results() {
-  const { score, name } = useParams();
+  const { state } = useLocation();
+  const { rightAnswers, name } = state;
 
   return (
     <>
       <div className="container">
         <h1>{`Great job ${name}!`}</h1>
-        <h3>{score} Correct Answers</h3>
+        <h3>{rightAnswers} Correct Answers</h3>
       </div>
       <div className="container">
         <div>

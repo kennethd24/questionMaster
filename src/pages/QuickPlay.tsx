@@ -3,10 +3,8 @@ import { useState } from 'react';
 
 export default function QuickPlay() {
   const [currentName, setCurrentName] = useState('');
-  const [currentDifficulty, setCurrentDifficulty] = useState('');
+  const [currentDifficulty, setCurrentDifficulty] = useState('easy');
   const [currentCategories, setCurrentCategories] = useState('');
-  const [currentQuestions, setCurrentQuestions] = useState([]);
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   let name = '';
@@ -37,40 +35,19 @@ export default function QuickPlay() {
   ];
 
   async function handleClick() {
-    // fetch questions from api
     try {
-      setLoading(true);
+      // setloading/loading parameter?
       const url = 'https://the-trivia-api.com/api/questions?limit=10';
+      // const url = `https://the-trivia-api.com/api/questions?categories=${currentCategories}&limit=10&difficulty=${currentDifficulty}`;
       const response = await fetch(url);
       const questions = await response.json();
 
-      setCurrentQuestions(questions);
-      setLoading(false);
       navigate(`/StartGame/${name}`, { state: questions });
-      // navigate to start game with new set of questions/names/etc.
     } catch (error: unknown) {
       // navigate to home page with error message
       console.error(`Unable to fetch questions: ${error.message}`);
     }
   }
-
-  /*
-  https://the-trivia-api.com/api/questions?categories=arts_and_literature,film_and_tv,food_and_drink,general_knowledge,geography,history,music,science,society_and_culture,sport_and_leisure&limit=10&difficulty=medium
-  default 10 question api
-  https://the-trivia-api.com/api/questions?limit=10
-
-  arts
-  https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=10
-
-  arts, film, and food
-  https://the-trivia-api.com/api/questions?categories=arts_and_literature,film_and_tv,food_and_drink&limit=10
-
-  arts, film, food, and general
-  https://the-trivia-api.com/api/questions?categories=arts_and_literature,film_and_tv,food_and_drink,general_knowledge&limit=10
-
-  arrts
-  https://the-trivia-api.com/api/questions?categories=arts_and_literature,film_and_tv,food_and_drink,general_knowledge&limit=10&difficulty=medium
-  */
 
   return (
     <>
@@ -117,13 +94,9 @@ export default function QuickPlay() {
           </select>
         </div>
         <div>
-          <Link to={`/StartGame/${name}`}>Start Game</Link>
           <button type="submit" onClick={handleClick}>
             Start Game
           </button>
-        </div>
-        <div>
-          <Link to={`/StartGame/${name}`}>Start Game</Link>
         </div>
       </div>
     </>
