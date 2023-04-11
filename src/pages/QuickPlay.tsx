@@ -3,7 +3,8 @@ import { useState } from 'react';
 
 export default function QuickPlay() {
   const [currentName, setCurrentName] = useState('');
-  const [currentDifficulty, setCurrentDifficulty] = useState('easy');
+  const [currentDifficulty, setCurrentDifficulty] =
+    useState('');
   const [currentCategories, setCurrentCategories] = useState('');
   const navigate = useNavigate();
 
@@ -37,15 +38,14 @@ export default function QuickPlay() {
   async function handleClick() {
     try {
       // setloading/loading parameter?
-      const url = 'https://the-trivia-api.com/api/questions?limit=10';
-      // const url = `https://the-trivia-api.com/api/questions?categories=${currentCategories}&limit=10&difficulty=${currentDifficulty}`;
+      // const url = 'https://the-trivia-api.com/api/questions?limit=10';
+      const url = `https://the-trivia-api.com/api/questions?&limit=10${currentCategories}${currentDifficulty}`;
       const response = await fetch(url);
       const questions = await response.json();
 
       navigate(`/StartGame/${name}`, { state: questions });
     } catch (error: unknown) {
-      // navigate to home page with error message
-      console.error(`Unable to fetch questions: ${error.message}`);
+      navigate('/NotFound', { state: error });
     }
   }
 
@@ -72,7 +72,9 @@ export default function QuickPlay() {
               <option
                 value={item.label}
                 key={item.label}
-                onClick={() => setCurrentCategories(item.value)}
+                onClick={() =>
+                  setCurrentCategories(`&categories==${item.value}`)
+                }
               >
                 {item.label}
               </option>
@@ -86,7 +88,9 @@ export default function QuickPlay() {
               <option
                 value={item.label}
                 key={item.label}
-                onClick={() => setCurrentDifficulty(item.value)}
+                onClick={() =>
+                  setCurrentDifficulty(`&difficulty=${item.value}`)
+                }
               >
                 {item.label}
               </option>
