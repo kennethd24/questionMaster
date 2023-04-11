@@ -87,7 +87,6 @@ export default function StartGame() {
           type="button"
           id={answer}
           style={{
-            cursor: 'pointer',
             minWidth: '64px',
           }}
           key={answer}

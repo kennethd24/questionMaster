@@ -51,7 +51,9 @@ export default function QuickPlay() {
     <div className="container">
       <h1>Quick Play</h1>
       <div>
-        <Link to="/">Go Back Home</Link>
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <button type="button">Go Back Home</button>
+        </Link>
       </div>
       <div className="omrs-input-group">
         <div className="omrs-input-underlined">
@@ -59,6 +61,12 @@ export default function QuickPlay() {
             required
             value={currentName}
             onChange={(e) => setCurrentName(e.target.value)}
+            style={{
+              backgroundColor: '#329da3',
+
+              border: '2px solid #cf4d16',
+              borderRadius: '10px',
+            }}
           />
           <span className="omrs-input-label">Enter Name</span>
         </div>
