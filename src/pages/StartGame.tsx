@@ -18,15 +18,17 @@ export default function StartGame() {
 
   const verifyAnswer = useCallback(
     (answer: string) => {
+      const selectedAnswer = document.getElementById(answer);
+
       if (correctAnswer === answer) {
-        // add delay?
-        // highlight green/fade into green?
         // add thumbs up, gold coins, jump
-        // add tally of right answers
+        selectedAnswer?.classList.add('correct');
         setRightAnswers(rightAnswers + 1);
-        setScore(score + 100 + 100 * (2 * (counter / 10)));
+        setScore(score + 100 + 100 * (counter / 10));
+      } else {
+        selectedAnswer?.classList.add('wrong');
       }
-      setQuestionIndex(questionIndex + 1);
+      setTimeout(() => setQuestionIndex(questionIndex + 1), 750);
       setCounter(10);
 
       if (questionIndex === questions.length - 1) {
@@ -80,7 +82,16 @@ export default function StartGame() {
         </div>
       </div>
       {allAnswers.map((answer) => (
-        <button type="submit" key={answer} onClick={() => verifyAnswer(answer)}>
+        <button
+          type="button"
+          id={answer}
+          style={{
+            cursor: 'pointer',
+            minWidth: '64px',
+          }}
+          key={answer}
+          onClick={(e) => verifyAnswer(answer, e)}
+        >
           {answer}
         </button>
       ))}
