@@ -24,7 +24,7 @@ export default function StartGame() {
         // add thumbs up, gold coins, jump
         selectedAnswer?.classList.add('correct');
         setRightAnswers(rightAnswers + 1);
-        setScore(score + 100 + 100 * (counter / 10));
+        setScore(score + 100 + 100 * (Math.min(counter + 1, 10) / 10));
       } else {
         selectedAnswer?.classList.add('wrong');
       }
@@ -65,21 +65,19 @@ export default function StartGame() {
   }, [counter, allAnswers, verifyAnswer]);
 
   return (
-    <>
-      <div className="container">
-        <div>
-          <Link to="/">Home</Link>
-        </div>
-        <div className="banner">
-          <h6>
-            {questionIndex + 1}/{questions.length}
-          </h6>
-          <h6>Countdown Timer : {counter}</h6>
-          <h6>Score: {score}</h6>
-        </div>
-        <div>
-          <h3>{question}</h3>
-        </div>
+    <div className="container">
+      <div>
+        <Link to="/">Home</Link>
+      </div>
+      <div className="banner">
+        <h6>
+          {questionIndex + 1}/{questions.length}
+        </h6>
+        <h6>Countdown Timer : {counter}</h6>
+        <h6>Score: {score}</h6>
+      </div>
+      <div>
+        <h3>{question}</h3>
       </div>
       {allAnswers.map((answer) => (
         <button
@@ -95,6 +93,6 @@ export default function StartGame() {
           {answer}
         </button>
       ))}
-    </>
+    </div>
   );
 }

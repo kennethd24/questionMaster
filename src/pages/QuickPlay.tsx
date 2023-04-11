@@ -48,59 +48,57 @@ export default function QuickPlay() {
   }
 
   return (
-    <>
-      <div className="container">
-        <h1>Quick Play</h1>
+    <div className="container">
+      <h1>Quick Play</h1>
+      <div>
+        <Link to="/">Go Back Home</Link>
       </div>
-      <div className="container">
-        <div>
-          <Link to="/">Go Back Home</Link>
-        </div>
-        <div>
+      <div className="omrs-input-group">
+        <div className="omrs-input-underlined">
           <input
+            required
             value={currentName}
             onChange={(e) => setCurrentName(e.target.value)}
-            placeholder="Enter Name"
           />
-        </div>
-        <div>
-          <select name="categories">
-            <option value="">Categories</option>
-            {categories.map((category) => (
-              <option
-                value={category.label}
-                key={category.label}
-                onClick={() =>
-                  setCurrentCategories(`&categories=${category.value}`)
-                }
-              >
-                {category.label}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <select name="difficulty">
-            <option value="">Difficulty</option>
-            {difficulty.map((item) => (
-              <option
-                value={item.label}
-                key={item.label}
-                onClick={() =>
-                  setCurrentDifficulty(`&difficulty=${item.value}`)
-                }
-              >
-                {item.label}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <button type="submit" onClick={handleClick}>
-            Start Game
-          </button>
+          <span className="omrs-input-label">Enter Name</span>
         </div>
       </div>
-    </>
+
+      <div>
+        <select name="categories">
+          <option value="">Categories</option>
+          {categories.map((category) => (
+            <option
+              value={category.label}
+              key={category.label}
+              onClick={() =>
+                setCurrentCategories(`&categories=${category.value}`)
+              }
+            >
+              {category.label}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div>
+        <select name="difficulty">
+          <option value="">Difficulty</option>
+          {difficulty.map((item) => (
+            <option
+              value={item.label}
+              key={item.label}
+              onClick={() => setCurrentDifficulty(`&difficulty=${item.value}`)}
+            >
+              {item.label}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div>
+        <button type="submit" onClick={handleClick}>
+          Start Game
+        </button>
+      </div>
+    </div>
   );
 }
