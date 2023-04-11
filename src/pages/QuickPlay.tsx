@@ -62,10 +62,7 @@ export default function QuickPlay() {
             value={currentName}
             onChange={(e) => setCurrentName(e.target.value)}
             style={{
-              backgroundColor: '#329da3',
-
-              border: '2px solid #cf4d16',
-              borderRadius: '10px',
+              height: '45px',
             }}
           />
           <span className="omrs-input-label">Enter Name</span>
