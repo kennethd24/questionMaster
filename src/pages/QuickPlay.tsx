@@ -1,15 +1,14 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function QuickPlay() {
-  const [currentName, setCurrentName] = useState('');
-  const [currentDifficulty, setCurrentDifficulty] =
-    useState('');
-  const [currentCategories, setCurrentCategories] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+  const [currentName, setCurrentName] = useState(location?.state || '');
+  const [currentDifficulty, setCurrentDifficulty] = useState('');
+  const [currentCategories, setCurrentCategories] = useState('');
 
   let name = '';
-
   if (!currentName) {
     name = 'Guest';
   } else {
@@ -38,7 +37,6 @@ export default function QuickPlay() {
   async function handleClick() {
     try {
       // setloading/loading parameter?
-      // const url = 'https://the-trivia-api.com/api/questions?limit=10';
       const url = `https://the-trivia-api.com/api/questions?&limit=10${currentCategories}${currentDifficulty}`;
       const response = await fetch(url);
       const questions = await response.json();
@@ -68,15 +66,15 @@ export default function QuickPlay() {
         <div>
           <select name="categories">
             <option value="">Categories</option>
-            {categories.map((item) => (
+            {categories.map((category) => (
               <option
-                value={item.label}
-                key={item.label}
+                value={category.label}
+                key={category.label}
                 onClick={() =>
-                  setCurrentCategories(`&categories==${item.value}`)
+                  setCurrentCategories(`&categories=${category.value}`)
                 }
               >
-                {item.label}
+                {category.label}
               </option>
             ))}
           </select>
