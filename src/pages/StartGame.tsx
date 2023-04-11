@@ -28,14 +28,17 @@ export default function StartGame() {
       } else {
         selectedAnswer?.classList.add('wrong');
       }
+      if (questionIndex === questions.length - 1) {
+        setTimeout(
+          () =>
+            navigate(`/Results`, {
+              state: { rightAnswers, name, score },
+            }),
+          750
+        );
+      }
       setTimeout(() => setQuestionIndex(questionIndex + 1), 750);
       setCounter(10);
-
-      if (questionIndex === questions.length - 1) {
-        navigate(`/Results`, {
-          state: { rightAnswers, name, score },
-        });
-      }
     },
     [
       correctAnswer,
