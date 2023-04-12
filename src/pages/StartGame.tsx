@@ -7,6 +7,7 @@ export default function StartGame() {
   const [rightAnswers, setRightAnswers] = useState(0);
   const [counter, setCounter] = useState(10);
   const [score, setScore] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const { state } = useLocation();
   const questions = state;
@@ -18,13 +19,14 @@ export default function StartGame() {
 
   const verifyAnswer = useCallback(
     (answer: string) => {
+      setLoading(true);
       const selectedAnswer = document.getElementById(answer);
 
       if (correctAnswer === answer) {
         // add thumbs up, gold coins, jump
         selectedAnswer?.classList.add('correct');
         setRightAnswers(rightAnswers + 1);
-        setScore(score + 100 + 100 * (Math.min(counter + 1, 10) / 10));
+        setScore(score + 100 + 100 * (Math.min(counter + 3, 10) / 10));
       } else {
         selectedAnswer?.classList.add('wrong');
       }
@@ -37,8 +39,11 @@ export default function StartGame() {
           750
         );
       }
-      setTimeout(() => setQuestionIndex(questionIndex + 1), 750);
-      setCounter(10);
+      setTimeout(() => {
+        setLoading(false);
+        setCounter(10);
+        setQuestionIndex(questionIndex + 1);
+      }, 1000);
     },
     [
       correctAnswer,
@@ -88,6 +93,7 @@ export default function StartGame() {
             type="button"
             id={answer}
             key={answer}
+            disabled={loading}
             style={{
               minWidth: '300px',
             }}
