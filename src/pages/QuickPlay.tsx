@@ -72,7 +72,7 @@ export default function QuickPlay() {
   }
 
   return (
-    <div className="container">
+    <div className="quickPlay-container">
       <h1>Quick Play</h1>
       <div>
         <Link to="/" style={{ textDecoration: 'none' }}>
