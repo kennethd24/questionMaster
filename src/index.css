@@ -91,7 +91,8 @@ button {
   margin-right: auto;
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 50%;
+  width: auto;
+  min-width: 200px;
   padding: 5px;
   text-align: center;
   display: flex;
@@ -147,6 +148,8 @@ input {
   min-width: 450px;
   background-color:#329da3;
   border-radius: 10px;
+  height: 500px;
+  max-width: 500px;
 }
 select {
   text-align: center;
@@ -209,4 +212,12 @@ div.omrs-input-group {
 	top: 9px;
 	font-size: 0.7375rem;
 	margin-bottom: 32px;
+}
+
+.answers {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: auto;
+  height: 300px;
 }

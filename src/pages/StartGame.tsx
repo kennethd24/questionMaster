@@ -82,19 +82,18 @@ export default function StartGame() {
       <div>
         <h3>{question}</h3>
       </div>
-      {allAnswers.map((answer) => (
-        <button
-          type="button"
-          id={answer}
-          style={{
-            minWidth: '64px',
-          }}
-          key={answer}
-          onClick={(e) => verifyAnswer(answer, e)}
-        >
-          {answer}
-        </button>
-      ))}
+      <div className="answers">
+        {allAnswers.map((answer) => (
+          <button
+            type="button"
+            id={answer}
+            key={answer}
+            onClick={() => verifyAnswer(answer)}
+          >
+            {answer}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

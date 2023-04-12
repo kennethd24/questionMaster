@@ -10,7 +10,7 @@ export default function QuickPlay() {
   const [difficultyQuery, setDifficultyQuery] = useState('');
   const [currentDifficulty, setCurrentDifficulty] =
     useState('Select Difficulty');
-  const [currentCategories, setCurrentCategories] = useState('');
+  const [currentCategories, setCurrentCategories] = useState('Select Category');
   const [currentCategoriesQuery, setCurrentCategoriesQuery] = useState('');
 
   const [showDifficulty, setShowDifficulty] = useState(false);
@@ -108,7 +108,7 @@ export default function QuickPlay() {
               setShowDifficulty(false);
             }}
           />
-          <div className="options" id="category">
+          <div className="options">
             {categories.map((category, index) => (
               <div
                 key={category.label}
