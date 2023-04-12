@@ -56,7 +56,7 @@ export default function QuickPlay() {
     if (difficultyLevel === 'Random') {
       setDifficultyQuery('');
     } else {
-      setDifficultyQuery(`&difficulty=${difficultyLevel}`);
+      setDifficultyQuery(`&difficulty=${difficultyLevel.toLowerCase()}`);
     }
     setCurrentDifficulty(difficultyLevel);
     setActive(!active);
@@ -68,7 +68,7 @@ export default function QuickPlay() {
       <div>
         <Link to="/" style={{ textDecoration: 'none' }}>
           <button type="button" tabIndex={0}>
-            Go Back Home
+            Home
           </button>
         </Link>
       </div>
