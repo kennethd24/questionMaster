@@ -86,7 +86,7 @@ div {
 }
 
 button {
-  border:1px solid #cf4d16;
+  border:2px solid #cf4d16;
   margin-left: auto;
   margin-right: auto;
   margin-top: 10px;
@@ -152,8 +152,6 @@ select {
   text-align: center;
 }
 
-
-
 div.omrs-input-group {
   margin-bottom: 1.5rem;
   position: relative;
@@ -212,18 +210,3 @@ div.omrs-input-group {
 	font-size: 0.7375rem;
 	margin-bottom: 32px;
 }
-
-/* .omrs-input-underlined:not(.omrs-input-danger) > input:focus + .omrs-input-label,
-.omrs-input-filled:not(.omrs-input-danger) > input:focus + .omrs-input-label {
-	color: var(--omrs-color-interaction);
-}
-
-.omrs-input-underlined:not(.omrs-input-danger) > input:focus,
-.omrs-input-filled:not(.omrs-input-danger) > input:focus {
-	border-color: var(--omrs-color-interaction);
-}
-
-.omrs-input-underlined:not(.omrs-input-danger) > input:focus ~ svg,
-.omrs-input-filled:not(.omrs-input-danger) > input:focus ~ svg {
-	fill: var(--omrs-color-ink-high-contrast);
-} */
