@@ -84,7 +84,7 @@ body > #root > div {
 
 
 div {
-    /* margin: auto; */
+    margin: auto;
     padding: 10px;
     text-align: center;
 }
