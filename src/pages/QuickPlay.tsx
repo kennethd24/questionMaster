@@ -1,12 +1,17 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
+import './quickPlay.css';
+
 export default function QuickPlay() {
   const navigate = useNavigate();
   const location = useLocation();
   const [currentName, setCurrentName] = useState(location?.state || '');
-  const [currentDifficulty, setCurrentDifficulty] = useState('');
+  const [difficultyQuery, setDifficultyQuery] = useState('');
+  const [currentDifficulty, setCurrentDifficulty] =
+    useState('Select Difficulty');
   const [currentCategories, setCurrentCategories] = useState('');
+  const [active, setActive] = useState(false);
 
   let name = '';
   if (!currentName) {
@@ -37,7 +42,7 @@ export default function QuickPlay() {
   async function handleClick() {
     try {
       // setloading/loading parameter?
-      const url = `https://the-trivia-api.com/api/questions?&limit=10${currentCategories}${currentDifficulty}`;
+      const url = `https://the-trivia-api.com/api/questions?&limit=10${currentCategories}${difficultyQuery}`;
       const response = await fetch(url);
       const questions = await response.json();
 
@@ -47,12 +52,24 @@ export default function QuickPlay() {
     }
   }
 
+  function handleDifficulty(difficultyLevel: string) {
+    if (difficultyLevel === 'Random') {
+      setDifficultyQuery('');
+    } else {
+      setDifficultyQuery(`&difficulty=${difficultyLevel}`);
+    }
+    setCurrentDifficulty(difficultyLevel);
+    setActive(!active);
+  }
+
   return (
     <div className="container">
       <h1>Quick Play</h1>
       <div>
         <Link to="/" style={{ textDecoration: 'none' }}>
-          <button type="button">Go Back Home</button>
+          <button type="button" tabIndex={0}>
+            Go Back Home
+          </button>
         </Link>
       </div>
       <div className="omrs-input-group">
@@ -86,18 +103,37 @@ export default function QuickPlay() {
         </select>
       </div>
       <div>
-        <select name="difficulty">
-          <option value="">Difficulty</option>
-          {difficulty.map((item) => (
-            <option
-              value={item.label}
-              key={item.label}
-              onClick={() => setCurrentDifficulty(`&difficulty=${item.value}`)}
+        <div className={`dropdown ${active ? 'active' : ''}`}>
+          <input
+            className="text-box"
+            type="text"
+            placeholder="Select Difficulty"
+            value={currentDifficulty}
+            readOnly
+            onClick={() => setActive(!active)}
+          />
+          <div className="options ">
+            <div
+              onClick={() => handleDifficulty('Random')}
+              onKeyDown={() => handleDifficulty('Random')}
+              role="button"
+              tabIndex={0}
             >
-              {item.label}
-            </option>
-          ))}
-        </select>
+              Random
+            </div>
+            {difficulty.map((item, index) => (
+              <div
+                key={item.label}
+                onClick={() => handleDifficulty(item.label)}
+                onKeyDown={() => handleDifficulty(item.label)}
+                role="button"
+                tabIndex={index}
+              >
+                {item.label}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
       <div>
         <button type="submit" onClick={handleClick}>
