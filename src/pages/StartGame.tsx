@@ -88,6 +88,9 @@ export default function StartGame() {
             type="button"
             id={answer}
             key={answer}
+            style={{
+              minWidth: '300px',
+            }}
             onClick={() => verifyAnswer(answer)}
           >
             {answer}
