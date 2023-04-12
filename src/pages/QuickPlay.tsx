@@ -11,7 +11,10 @@ export default function QuickPlay() {
   const [currentDifficulty, setCurrentDifficulty] =
     useState('Select Difficulty');
   const [currentCategories, setCurrentCategories] = useState('');
-  const [active, setActive] = useState(false);
+  const [currentCategoriesQuery, setCurrentCategoriesQuery] = useState('');
+
+  const [showDifficulty, setShowDifficulty] = useState(false);
+  const [showCategories, setShowCategories] = useState(false);
 
   let name = '';
   if (!currentName) {
@@ -42,7 +45,7 @@ export default function QuickPlay() {
   async function handleClick() {
     try {
       // setloading/loading parameter?
-      const url = `https://the-trivia-api.com/api/questions?&limit=10${currentCategories}${difficultyQuery}`;
+      const url = `https://the-trivia-api.com/api/questions?&limit=10${currentCategoriesQuery}${difficultyQuery}`;
       const response = await fetch(url);
       const questions = await response.json();
 
@@ -59,7 +62,13 @@ export default function QuickPlay() {
       setDifficultyQuery(`&difficulty=${difficultyLevel.toLowerCase()}`);
     }
     setCurrentDifficulty(difficultyLevel);
-    setActive(!active);
+    setShowDifficulty(!showDifficulty);
+  }
+
+  function handleCategories(category: string, categoryQuery: string) {
+    setCurrentCategoriesQuery(categoryQuery);
+    setCurrentCategories(category);
+    setShowCategories(!showCategories);
   }
 
   return (
@@ -87,30 +96,52 @@ export default function QuickPlay() {
       </div>
 
       <div>
-        <select name="categories">
-          <option value="">Categories</option>
-          {categories.map((category) => (
-            <option
-              value={category.label}
-              key={category.label}
-              onClick={() =>
-                setCurrentCategories(`&categories=${category.value}`)
-              }
-            >
-              {category.label}
-            </option>
-          ))}
-        </select>
+        <div className={`dropdown ${showCategories ? 'active' : ''}`}>
+          <input
+            className="text-box"
+            type="text"
+            placeholder="Select Category"
+            value={currentCategories}
+            readOnly
+            onClick={() => {
+              setShowCategories(!showCategories);
+              setShowDifficulty(false);
+            }}
+          />
+          <div className="options" id="category">
+            {categories.map((category, index) => (
+              <div
+                key={category.label}
+                onClick={() =>
+                  handleCategories(
+                    category.label,
+                    `&categories=${category.value}`
+                  )
+                }
+                onKeyDown={() =>
+                  handleCategories(category.label, category.value)
+                }
+                role="button"
+                tabIndex={index}
+              >
+                {category.label}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
       <div>
-        <div className={`dropdown ${active ? 'active' : ''}`}>
+        <div className={`dropdown ${showDifficulty ? 'active' : ''}`}>
           <input
             className="text-box"
             type="text"
             placeholder="Select Difficulty"
             value={currentDifficulty}
             readOnly
-            onClick={() => setActive(!active)}
+            onClick={() => {
+              setShowDifficulty(!showDifficulty);
+              setShowCategories(false);
+            }}
           />
           <div className="options ">
             <div

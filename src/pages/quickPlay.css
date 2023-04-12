@@ -29,7 +29,7 @@
 	position: absolute;
 	top: 15px;
 	right: 20px;
-	z-index: 1000;
+	z-index: 1;
 	width: 8px;
 	height: 8px;
 	border: 2px solid #e9e9ed;
@@ -70,6 +70,10 @@
 	border-radius: 20px;
 	overflow: hidden;
 	display: none;
+	z-index: 2;
+	overflow-y: scroll;
+	max-height: 90px;
+	scrollbar-width: thin;
 }
 
 .dropdown.active .options {
