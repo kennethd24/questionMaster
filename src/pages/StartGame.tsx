@@ -84,7 +84,7 @@ export default function StartGame() {
         <h6>
           {questionIndex + 1}/{questions.length}
         </h6>
-        <h6>Countdown Timer : {counter}</h6>
+        <h6>Timer : {counter}</h6>
         <h6>Score: {score}</h6>
       </div>
       <div>
