@@ -13,7 +13,8 @@ export default function StartGame() {
   const questions = state;
   const { question, correctAnswer, incorrectAnswers } =
     questions[questionIndex];
-  const allAnswers: string[] = [correctAnswer].concat(incorrectAnswers);
+
+  const [randomAnswers, setRandomAnswers] = useState<string[]>([]);
 
   const navigate = useNavigate();
 
@@ -58,9 +59,6 @@ export default function StartGame() {
 
   // eslint-disable-next-line consistent-return
   useEffect(() => {
-    if (counter === 10) {
-      allAnswers.sort(() => 0.5 - Math.random());
-    }
     if (counter === 0) {
       verifyAnswer('null');
       setCounter(10);
@@ -69,11 +67,13 @@ export default function StartGame() {
       const timer1 = setTimeout(() => setCounter(counter - 1), 1000);
       return () => clearTimeout(timer1);
     }
-  }, [counter, allAnswers, verifyAnswer]);
+  }, [counter, verifyAnswer]);
 
   useEffect(() => {
+    const allAnswers: string[] = [correctAnswer].concat(incorrectAnswers);
     setCounter(10);
-  }, [questionIndex]);
+    setRandomAnswers(allAnswers.sort(() => 0.5 - Math.random()));
+  }, [questionIndex, correctAnswer, incorrectAnswers]);
 
   return (
     <div className="container">
@@ -91,7 +91,7 @@ export default function StartGame() {
         <h3>{question}</h3>
       </div>
       <div className="answers">
-        {allAnswers.map((answer) => (
+        {randomAnswers.map((answer) => (
           <button
             type="button"
             id={answer}
