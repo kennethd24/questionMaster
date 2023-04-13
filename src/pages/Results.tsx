@@ -19,7 +19,11 @@ export default function Results() {
         <h3>Score: {score} </h3>
       </div>
       <div>
-        <button type="submit" onClick={handleClick}>
+        <button
+          type="submit"
+          onClick={handleClick}
+          style={{ textDecoration: 'none' }}
+        >
           Play Again
         </button>
       </div>
