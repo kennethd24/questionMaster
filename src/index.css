@@ -99,11 +99,13 @@ button {
   min-width: 200px;
   padding: 5px;
   text-align: center;
-  display: flex;
-  flex-direction: column;
   border-radius: 20px;
+  display: flex;
   cursor: pointer;
+  flex-direction: column;
   justify-content: center;
+  text-align: -webkit-center;
+  color:#2b2a29;
 }
 
 @media (hover: hover) {
