@@ -103,25 +103,35 @@ button {
   flex-direction: column;
   border-radius: 20px;
   cursor: pointer;
+  justify-content: center;
 }
 
-button:hover {
-  background-color:#f5b732;
-  transition: 0.3s;
+@media (hover: hover) {
+  button:hover {
+    background-color:#f5b732;
+    transition: 0.3s;
+  }
+  .correct:hover {
+    background-color:#7fa46d;
+    transition: 0.1s;
+  }
+  .wrong:hover  {
+    background-color:#b72a16;
+    transition: 0.1s;
+  }
+  .omrs-input-underlined > input:hover {
+    background-color:#f5b732;
+    border-bottom: 2px solid #f5b732;
+    border-radius: 10px;
+    transition: 0.2s;
+  }
 }
+
 .correct {
   background-color:#7fa46d;
   transition: 0.1s;
 }
-.correct:hover {
-  background-color:#7fa46d;
-  transition: 0.1s;
-}
 .wrong {
-  background-color:#b72a16;
-  transition: 0.1s;
-}
-.wrong:hover  {
   background-color:#b72a16;
   transition: 0.1s;
 }
@@ -245,12 +255,6 @@ div.omrs-input-group {
 	margin: 0.125rem 0.875rem;
 }
 
-.omrs-input-underlined > input:hover {
-	background-color:#f5b732;
-  border-bottom: 2px solid #f5b732;
-  border-radius: 10px;
-  transition: 0.2s;
-}
 
 .omrs-input-underlined > input:focus + .omrs-input-label,
 .omrs-input-underlined > input:valid + .omrs-input-label {
