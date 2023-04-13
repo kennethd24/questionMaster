@@ -12,13 +12,16 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.10.0"
+    "react-router-dom": "^6.10.0",
+    "thin-backend": "^0.12.1",
+    "thin-backend-react": "^0.10.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "@types/thin-backend": "https://thin.dev/types/80b044a9-94eb-4402-970f-bfcea4be1702/VymUkyWpCdGAgfjngtzYzgLkShrapMvl",
     "@typescript-eslint/eslint-plugin": "^5.57.0",
     "@typescript-eslint/parser": "^5.57.0",
     "@vitejs/plugin-react-swc": "^3.0.0",
