@@ -170,7 +170,7 @@ export default function QuickPlay() {
         <button
           type="submit"
           onClick={handleClick}
-          style={{ textDecoration: 'none' }}
+          // style={{ textDecoration: 'none' }}
         >
           Start Game
         </button>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import image1 from '../../public/images/bookTree.png';
+import image1 from '../images/bookTree.png';
 
 export default function Home() {
   return (
@@ -8,7 +8,12 @@ export default function Home() {
       <img
         src={image1}
         alt="logo"
-        style={{ padding: '20px', marginTop: '10%' }}
+        style={{
+          maxHeight: '352px',
+          maxWidth: '356px',
+          padding: '20px',
+          marginTop: '10%',
+        }}
       />
       <div className="home-body">
         <div>Multiplayer (Coming soon!)</div>

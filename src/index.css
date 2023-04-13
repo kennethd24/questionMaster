@@ -98,12 +98,12 @@ button {
   width: auto;
   min-width: 200px;
   padding: 10px;
-  text-align: center;
   border-radius: 20px;
   display: flex;
   cursor: pointer;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
   text-align: -webkit-center;
   color:#2b2a29;
 }
