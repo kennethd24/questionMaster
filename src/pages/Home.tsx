@@ -5,7 +5,7 @@ export default function Home() {
     <div className="home-container">
       <h1>Question Master</h1>
       <img
-        src="./src/assets/lightbulb.png"
+        src="public/lightbulb.png"
         alt="logo"
         style={{ width: 250, height: 300, padding: '20px', marginTop: '10%' }}
       />
