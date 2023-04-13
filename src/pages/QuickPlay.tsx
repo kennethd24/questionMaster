@@ -168,7 +168,7 @@ export default function QuickPlay() {
       </div>
       <div>
         <button
-          type="submit"
+          type="button"
           onClick={handleClick}
           // style={{ textDecoration: 'none' }}
         >

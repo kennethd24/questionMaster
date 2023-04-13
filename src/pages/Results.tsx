@@ -20,7 +20,7 @@ export default function Results() {
       </div>
       <div>
         <button
-          type="submit"
+          type="button"
           onClick={handleClick}
           style={{ textDecoration: 'none' }}
         >
