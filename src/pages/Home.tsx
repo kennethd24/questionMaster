@@ -5,8 +5,8 @@ export default function Home() {
     <div className="home-container">
       <h1>Question Master</h1>
       <div className="home-body">
-        <div>Multiplayer</div>
-        <div>Leader Board</div>
+        <div>Multiplayer (Coming soon!)</div>
+        <div>Leader Board (Coming soon!)</div>
         <Link to="/QuickPlay" style={{ textDecoration: 'none' }}>
           <button type="button">Quick Play</button>
         </Link>

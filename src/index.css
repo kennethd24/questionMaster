@@ -135,7 +135,12 @@ button:hover {
 h1 {
   border-bottom: 4px solid #cf4d16;
   /* border-radius: 10px; */
+  padding: 10px;
 }
+h3 {
+  padding: 10px;
+}
+
 h6 {
   /* border: 1px solid black; */
   font-size: small;
@@ -189,8 +194,10 @@ input {
   /* justify-content: flex-end; */
   padding-bottom: 10%;
 }
-select {
-  text-align: center;
+.score-Container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 div.omrs-input-group {
