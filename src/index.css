@@ -177,6 +177,7 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   margin: auto;
   padding-bottom: 10%;
 }
@@ -205,6 +206,7 @@ input {
   display: flex;
   flex-direction: column;
   padding-bottom: 15%;
+  align-items: center;
 }
 .score-Container {
   display: flex;

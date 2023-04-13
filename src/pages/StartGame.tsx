@@ -41,7 +41,6 @@ export default function StartGame() {
       }
       setTimeout(() => {
         setLoading(false);
-        setCounter(10);
         setQuestionIndex(questionIndex + 1);
       }, 1000);
     },
@@ -71,6 +70,10 @@ export default function StartGame() {
       return () => clearTimeout(timer1);
     }
   }, [counter, allAnswers, verifyAnswer]);
+
+  useEffect(() => {
+    setCounter(10);
+  }, [questionIndex]);
 
   return (
     <div className="container">
