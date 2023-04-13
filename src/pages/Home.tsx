@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
+import image1 from '../../public/images/lightbulb.png';
 
 export default function Home() {
   return (
     <div className="home-container">
       <h1>Question Master</h1>
       <img
-        src="public/lightbulb.png"
+        src={image1}
         alt="logo"
         style={{ width: 250, height: 300, padding: '20px', marginTop: '10%' }}
       />
