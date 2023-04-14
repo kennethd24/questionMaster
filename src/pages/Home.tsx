@@ -20,7 +20,7 @@ export default function Home() {
           }}
         />
         <div className="home-body">
-          <button type="button" onClick={() => logout}>
+          <button type="button" onClick={logout}>
             Logout
           </button>
           <div>Multiplayer (Coming soon!)</div>
