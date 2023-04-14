@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { initThinBackend, logout } from 'thin-backend';
 import { ThinBackend, useCurrentUser } from 'thin-backend-react';
+import { useState } from 'react';
 import Home from './pages/Home';
 import QuickPlay from './pages/QuickPlay';
 import StartGame from './pages/StartGame';
@@ -15,12 +16,23 @@ initThinBackend({
 
 export function App() {
   const user = useCurrentUser();
+  const [hideLogout, setHideLogout] = useState(true);
+
   return (
     <ThinBackend requireLogin>
-      <p className='login-container'>
-        {user?.email}
-        <button type="submit" className="login-button" onClick={logout}>Logout</button>
-    </p>
+      {/* <div className="login-container">
+        <div className="login-email">{user?.email}</div>
+        <button
+          style={hideLogout ? { display: 'none' } : {}}
+          type="submit"
+          tabIndex={0}
+          className="login-div"
+          onKeyDown={() => logout}
+          onClick={() => logout}
+        >
+          Logout
+        </button>
+      </div> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/QuickPlay" element={<QuickPlay />} />

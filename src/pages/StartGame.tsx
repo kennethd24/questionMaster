@@ -1,6 +1,7 @@
 import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
 import { createRecord, getCurrentUserId } from 'thin-backend';
+import image1 from '../images/bookTree.png';
 
 export default function StartGame() {
   const { name } = useParams();
@@ -104,7 +105,18 @@ export default function StartGame() {
   return (
     <div className="container">
       <div>
-        <Link to="/">Home</Link>
+        <Link to="/">
+        <img
+            src={image1}
+            alt="logo"
+            style={{
+              maxHeight: '75px',
+              padding: '20px',
+              marginTop: '25px',
+              marginRight: '10px',
+            }}
+          />
+        </Link>
       </div>
       <div className="banner">
         <h6>

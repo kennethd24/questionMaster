@@ -79,7 +79,7 @@ body, html {
   color: #2b2a29;
 }
 body > #root > div {
-  height: 90vh;
+  /* height: 90vh; */
 }
 
 
@@ -87,6 +87,18 @@ div {
     margin: auto;
     padding: 10px;
     text-align: center;
+}
+
+.login-container {
+  height: 50px;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% ;
+  grid-template-rows: 20% 20% 20% 20% ;
+  max-width: 500px;
+}
+
+#login-home {
+  grid-column-start: 5;
 }
 
 button {
@@ -112,14 +124,6 @@ button {
   button:hover {
     background-color:#6889C0;
     transition: 0.3s;
-  }
-  .correct:hover {
-    background-color:#7fa46d;
-    transition: 0.1s;
-  }
-  .wrong:hover  {
-    background-color:#b72a16;
-    transition: 0.1s;
   }
   .omrs-input-underlined > input:hover {
     background-color:#6889C0;
