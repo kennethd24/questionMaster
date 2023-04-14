@@ -28,7 +28,9 @@ export default function StartGame() {
         // add thumbs up, gold coins, jump
         selectedAnswer?.classList.add('correct');
         setRightAnswers(rightAnswers + 1);
-        setScore(score + 100 + 100 * (Math.min(counter + 3, 10) / 10));
+        setScore(
+          Math.trunc(score + 100 + 100 * (Math.min(counter - 3, 10) / 10))
+        );
       } else {
         selectedAnswer?.classList.add('wrong');
       }
@@ -37,8 +39,6 @@ export default function StartGame() {
       let defaultCategory: string = currentCategory;
 
       if (questionIndex === questions.length - 1) {
-        // last question, add final score to data base
-
         if (currentDifficulty === 'Select Difficulty') {
           defaultDifficulty = 'Random';
         }
@@ -70,7 +70,7 @@ export default function StartGame() {
       setTimeout(() => {
         setLoading(false);
         setQuestionIndex(questionIndex + 1);
-      }, 1500);
+      }, 1000);
     },
     [
       correctAnswer,
@@ -92,16 +92,16 @@ export default function StartGame() {
       verifyAnswer('null');
       setCounter(15);
     }
-    if (counter > 0) {
+    if (!loading && counter > 0) {
       const timer1 = setTimeout(() => setCounter(counter - 1), 1000);
       return () => clearTimeout(timer1);
     }
-  }, [counter, verifyAnswer]);
+  }, [counter, verifyAnswer, loading]);
 
   useEffect(() => {
     const allAnswers: string[] = [correctAnswer].concat(incorrectAnswers);
-    setCounter(15);
     setRandomAnswers(allAnswers.sort(() => 0.5 - Math.random()));
+    setCounter(15);
   }, [questionIndex, correctAnswer, incorrectAnswers]);
 
   return (
