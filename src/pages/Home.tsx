@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
+import { logout } from 'thin-backend';
 import image1 from '../images/bookTree.png';
 import Navbar from '../shared/Navbar';
 
 export default function Home() {
   return (
     <>
-      <Navbar needHomeIcon={true} needTitle={false} />
+      <Navbar needHomeIcon needTitle={false} />
       <div className="home-container">
         <h1>Question Master</h1>
         <img
@@ -19,6 +20,9 @@ export default function Home() {
           }}
         />
         <div className="home-body">
+          <button type="button" onClick={() => logout}>
+            Logout
+          </button>
           <div>Multiplayer (Coming soon!)</div>
           <div>Leader Board (Coming soon!)</div>
           <Link to="/QuickPlay" style={{ textDecoration: 'none' }}>

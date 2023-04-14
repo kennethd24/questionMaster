@@ -7,7 +7,7 @@ export default function StartGame() {
   const { name } = useParams();
   const [questionIndex, setQuestionIndex] = useState(0);
   const [rightAnswers, setRightAnswers] = useState(0);
-  const [counter, setCounter] = useState(10);
+  const [counter, setCounter] = useState(15);
   const [score, setScore] = useState(0);
   const [loading, setLoading] = useState(false);
 
@@ -22,6 +22,7 @@ export default function StartGame() {
     (answer: string) => {
       setLoading(true);
       const selectedAnswer = document.getElementById(answer);
+      const highlightCorrectAnswer = document.getElementById(correctAnswer);
 
       if (correctAnswer === answer) {
         // add thumbs up, gold coins, jump
@@ -31,6 +32,7 @@ export default function StartGame() {
       } else {
         selectedAnswer?.classList.add('wrong');
       }
+      highlightCorrectAnswer?.classList.add('correct');
       let defaultDifficulty: string = currentDifficulty;
       let defaultCategory: string = currentCategory;
 
@@ -68,7 +70,7 @@ export default function StartGame() {
       setTimeout(() => {
         setLoading(false);
         setQuestionIndex(questionIndex + 1);
-      }, 1000);
+      }, 1500);
     },
     [
       correctAnswer,
@@ -88,7 +90,7 @@ export default function StartGame() {
   useEffect(() => {
     if (counter === 0) {
       verifyAnswer('null');
-      setCounter(10);
+      setCounter(15);
     }
     if (counter > 0) {
       const timer1 = setTimeout(() => setCounter(counter - 1), 1000);
@@ -98,7 +100,7 @@ export default function StartGame() {
 
   useEffect(() => {
     const allAnswers: string[] = [correctAnswer].concat(incorrectAnswers);
-    setCounter(10);
+    setCounter(15);
     setRandomAnswers(allAnswers.sort(() => 0.5 - Math.random()));
   }, [questionIndex, correctAnswer, incorrectAnswers]);
 
@@ -106,7 +108,7 @@ export default function StartGame() {
     <div className="container">
       <div>
         <Link to="/">
-        <img
+          <img
             src={image1}
             alt="logo"
             style={{
