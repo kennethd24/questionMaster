@@ -4,6 +4,10 @@ import image1 from '../images/bookTree.png';
 import Navbar from '../shared/Navbar';
 
 export default function Home() {
+  async function doLogout() {
+    await logout();
+  }
+
   return (
     <>
       <Navbar needHomeIcon needTitle={false} />
@@ -20,7 +24,7 @@ export default function Home() {
           }}
         />
         <div className="home-body">
-          <button type="button" onClick={() => logout}>
+          <button type="button" onClick={doLogout}>
             Logout
           </button>
           <div>Multiplayer (Coming soon!)</div>
