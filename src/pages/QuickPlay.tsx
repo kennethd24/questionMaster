@@ -10,8 +10,8 @@ export default function QuickPlay() {
   const [difficultyQuery, setDifficultyQuery] = useState('');
   const [currentDifficulty, setCurrentDifficulty] =
     useState('Select Difficulty');
-  const [currentCategories, setCurrentCategories] = useState('Select Category');
-  const [currentCategoriesQuery, setCurrentCategoriesQuery] = useState('');
+  const [currentCategory, setCurrentCategory] = useState('Select Category');
+  const [currentCategoryQuery, setCurrentCategoryQuery] = useState('');
 
   const [showDifficulty, setShowDifficulty] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
@@ -45,12 +45,12 @@ export default function QuickPlay() {
   async function handleClick() {
     try {
       // setloading/loading parameter?
-      const url = `https://the-trivia-api.com/api/questions?&limit=10${currentCategoriesQuery}${difficultyQuery}`;
+      const url = `https://the-trivia-api.com/api/questions?&limit=10${currentCategoryQuery}${difficultyQuery}`;
       const response = await fetch(url);
       const questions = await response.json();
 
       navigate(`/StartGame/${name}`, {
-        state: { questions, currentDifficulty, currentCategories },
+        state: { questions, currentDifficulty, currentCategory },
       });
     } catch (error: unknown) {
       navigate('/NotFound', { state: error });
@@ -68,8 +68,8 @@ export default function QuickPlay() {
   }
 
   function handleCategories(category: string, categoryQuery: string) {
-    setCurrentCategoriesQuery(categoryQuery);
-    setCurrentCategories(category);
+    setCurrentCategoryQuery(categoryQuery);
+    setCurrentCategory(category);
     setShowCategories(!showCategories);
   }
 
@@ -103,7 +103,7 @@ export default function QuickPlay() {
             className="text-box"
             type="text"
             placeholder="Select Category"
-            value={currentCategories}
+            value={currentCategory}
             readOnly
             onClick={() => {
               setShowCategories(!showCategories);
@@ -169,11 +169,7 @@ export default function QuickPlay() {
         </div>
       </div>
       <div>
-        <button
-          type="button"
-          onClick={handleClick}
-          // style={{ textDecoration: 'none' }}
-        >
+        <button type="button" onClick={handleClick}>
           Start Game
         </button>
       </div>

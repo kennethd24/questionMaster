@@ -11,12 +11,10 @@ export default function StartGame() {
   const [loading, setLoading] = useState(false);
 
   const { state } = useLocation();
-  const { questions, currentDifficulty, currentCategories } = state;
+  const { questions, currentDifficulty, currentCategory } = state;
   const { question, correctAnswer, incorrectAnswers } =
     questions[questionIndex];
-
   const [randomAnswers, setRandomAnswers] = useState<string[]>([]);
-
   const navigate = useNavigate();
 
   const verifyAnswer = useCallback(
@@ -32,18 +30,36 @@ export default function StartGame() {
       } else {
         selectedAnswer?.classList.add('wrong');
       }
+      let defaultDifficulty: string = currentDifficulty;
+      let defaultCategory: string = currentCategory;
+
       if (questionIndex === questions.length - 1) {
         // last question, add final score to data base
+
+        if (currentDifficulty === 'Select Difficulty') {
+          defaultDifficulty = 'Random';
+        }
+        if (currentCategory === 'Select Category') {
+          defaultCategory = 'Random';
+        }
+
         createRecord('scores', {
           score,
-          difficulty: currentDifficulty,
-          category: currentCategories,
+          difficulty: defaultDifficulty,
+          category: defaultCategory,
           userId: getCurrentUserId(),
+          name,
         });
         setTimeout(
           () =>
             navigate(`/Results`, {
-              state: { rightAnswers, name, score },
+              state: {
+                rightAnswers,
+                name,
+                score,
+                defaultCategory,
+                defaultDifficulty,
+              },
             }),
           750
         );
@@ -62,6 +78,8 @@ export default function StartGame() {
       navigate,
       score,
       counter,
+      currentDifficulty,
+      currentCategory,
     ]
   );
 

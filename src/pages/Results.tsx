@@ -2,51 +2,20 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { query } from 'thin-backend';
 import { useQuery } from 'thin-backend-react';
 
-function HighScores() {
-  const category = 'Film & TV';
-  const difficulty = 'Easy';
-
-  const highScores = useQuery(
-    query('scores')
-      .where('category', category)
-      .where('difficulty', difficulty)
-      .orderByDesc('score')
-      .limit(5)
-  );
-
-  if (highScores === null) {
-    return (
-      <>
-        <div>High Scores Loading ...</div>;
-        <div className="high-score-container">
-          <div className="high-score">
-            Champion <br /> name and score
-          </div>
-          <div className="high-score">2nd name and score</div>
-          <div className="high-score">3rd name and score</div>
-          <div className="high-score">4th name and score</div>
-          <div className="high-score">5th name and score</div>
-        </div>
-        ;
-      </>
-    );
-  }
-
-  return (
-    <div className="high-score-container">
-      {highScores.map((user, index) => (
-        <div className="high-score" key={user.createdAt}>
-          {`${index + 1}. ${user.userId} ${user.score}`}
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export default function Results() {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const { rightAnswers, name, score } = state;
+  const { rightAnswers, name, score, defaultCategory, defaultDifficulty } =
+    state;
+
+  const highScores = useQuery(
+    query('scores')
+      .where('category', defaultCategory)
+      .where('difficulty', defaultDifficulty)
+      .whereNot('name', 'Guest')
+      .orderByDesc('score')
+      .limit(5)
+  );
 
   function handleClick() {
     navigate('/QuickPlay', { state: name });
@@ -61,7 +30,13 @@ export default function Results() {
         }: ${rightAnswers}`}</h3>
         <h3>Score: {score} </h3>
       </div>
-      <HighScores />
+      <div className="high-score-container">
+        {highScores?.map((user, index) => (
+          <div className="high-score" key={user.createdAt}>
+            {`${index + 1}. ${user.name} ${user.score} `}
+          </div>
+        ))}
+      </div>
       <div>
         <button
           type="button"
