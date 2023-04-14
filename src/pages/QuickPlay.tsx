@@ -1,4 +1,4 @@
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Navbar from '../shared/Navbar';
 
@@ -6,8 +6,7 @@ import './quickPlay.css';
 
 export default function QuickPlay() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const [currentName, setCurrentName] = useState(location?.state || '');
+  const [currentName, setCurrentName] = useState('');
   const [difficultyQuery, setDifficultyQuery] = useState('');
   const [currentDifficulty, setCurrentDifficulty] =
     useState('Select Difficulty');
@@ -16,13 +15,6 @@ export default function QuickPlay() {
 
   const [showDifficulty, setShowDifficulty] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
-
-  let name = '';
-  if (!currentName) {
-    name = 'Guest';
-  } else {
-    name = currentName;
-  }
 
   const categories = [
     { label: 'Arts & Literature', value: 'arts_and_literature' },
@@ -43,14 +35,18 @@ export default function QuickPlay() {
     { label: 'Hard', value: 'hard' },
   ];
 
-  async function handleClick() {
+  async function handleClick(e: { preventDefault: () => void }) {
+    e.preventDefault();
+    if (!currentName) {
+      return;
+    }
     try {
       // setloading/loading parameter?
       const url = `https://the-trivia-api.com/api/questions?&limit=10${currentCategoryQuery}${difficultyQuery}`;
       const response = await fetch(url);
       const questions = await response.json();
 
-      navigate(`/StartGame/${name}`, {
+      navigate(`/StartGame/${currentName}`, {
         state: { questions, currentDifficulty, currentCategory },
       });
     } catch (error: unknown) {
@@ -75,7 +71,7 @@ export default function QuickPlay() {
   }
 
   return (
-    <>
+    <form onSubmit={handleClick}>
       <Navbar needHomeIcon needTitle={false} />
       <div className="quickPlay-container">
         <h1>Quick Play</h1>
@@ -172,11 +168,9 @@ export default function QuickPlay() {
           </div>
         </div>
         <div>
-          <button type="button" onClick={handleClick}>
-            Start Game
-          </button>
+          <button type="submit">Start Game</button>
         </div>
       </div>
-    </>
+    </form>
   );
 }
