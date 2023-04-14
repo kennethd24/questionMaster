@@ -1,5 +1,7 @@
 import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
+import { createRecord, getCurrentUserId } from 'thin-backend';
+import image1 from '../images/bookTree.png';
 
 export default function StartGame() {
   const { name } = useParams();
@@ -10,12 +12,10 @@ export default function StartGame() {
   const [loading, setLoading] = useState(false);
 
   const { state } = useLocation();
-  const questions = state;
+  const { questions, currentDifficulty, currentCategory } = state;
   const { question, correctAnswer, incorrectAnswers } =
     questions[questionIndex];
-
   const [randomAnswers, setRandomAnswers] = useState<string[]>([]);
-
   const navigate = useNavigate();
 
   const verifyAnswer = useCallback(
@@ -31,11 +31,36 @@ export default function StartGame() {
       } else {
         selectedAnswer?.classList.add('wrong');
       }
+      let defaultDifficulty: string = currentDifficulty;
+      let defaultCategory: string = currentCategory;
+
       if (questionIndex === questions.length - 1) {
+        // last question, add final score to data base
+
+        if (currentDifficulty === 'Select Difficulty') {
+          defaultDifficulty = 'Random';
+        }
+        if (currentCategory === 'Select Category') {
+          defaultCategory = 'Random';
+        }
+
+        createRecord('scores', {
+          score,
+          difficulty: defaultDifficulty,
+          category: defaultCategory,
+          userId: getCurrentUserId(),
+          name,
+        });
         setTimeout(
           () =>
             navigate(`/Results`, {
-              state: { rightAnswers, name, score },
+              state: {
+                rightAnswers,
+                name,
+                score,
+                defaultCategory,
+                defaultDifficulty,
+              },
             }),
           750
         );
@@ -54,6 +79,8 @@ export default function StartGame() {
       navigate,
       score,
       counter,
+      currentDifficulty,
+      currentCategory,
     ]
   );
 
@@ -78,7 +105,18 @@ export default function StartGame() {
   return (
     <div className="container">
       <div>
-        <Link to="/">Home</Link>
+        <Link to="/">
+        <img
+            src={image1}
+            alt="logo"
+            style={{
+              maxHeight: '75px',
+              padding: '20px',
+              marginTop: '25px',
+              marginRight: '10px',
+            }}
+          />
+        </Link>
       </div>
       <div className="banner">
         <h6>
