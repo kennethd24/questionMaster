@@ -125,6 +125,14 @@ button {
     background-color:#6889C0;
     transition: 0.3s;
   }
+  .correct:hover {
+    background-color:#7fa46d;
+    transition: 0.1s;
+  }
+  .wrong:hover  {
+    background-color:#b72a16;
+    transition: 0.1s;
+  }
   .omrs-input-underlined > input:hover {
     background-color:#6889C0;
     border-bottom: 2px solid #6889C0;
