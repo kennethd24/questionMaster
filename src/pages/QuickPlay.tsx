@@ -168,7 +168,9 @@ export default function QuickPlay() {
           </div>
         </div>
         <div>
-          <button type="submit">Start Game</button>
+          <button style={{ textDecoration: 'none' }} type="submit">
+            Start Game
+          </button>
         </div>
       </div>
     </form>

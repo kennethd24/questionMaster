@@ -70,7 +70,7 @@ export default function StartGame() {
       setTimeout(() => {
         setLoading(false);
         setQuestionIndex(questionIndex + 1);
-      }, 1000);
+      }, 1500);
     },
     [
       correctAnswer,
