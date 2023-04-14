@@ -21,7 +21,7 @@
     "@testing-library/react": "^14.0.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
-    "@types/thin-backend": "https://thin.dev/types/80b044a9-94eb-4402-970f-bfcea4be1702/VymUkyWpCdGAgfjngtzYzgLkShrapMvl",
+    "@types/thin-backend": "https://thin.dev/types/0db51fef-7c20-448b-9291-8f6b2b447b86/aLRZpZOsUqLyUfsNQSRMrvTIPyRkyYaj",
     "@typescript-eslint/eslint-plugin": "^5.57.0",
     "@typescript-eslint/parser": "^5.57.0",
     "@vitejs/plugin-react-swc": "^3.0.0",

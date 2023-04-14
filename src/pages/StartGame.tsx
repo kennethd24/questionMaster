@@ -1,5 +1,6 @@
 import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
+import { createRecord, getCurrentUserId } from 'thin-backend';
 
 export default function StartGame() {
   const { name } = useParams();
@@ -10,7 +11,7 @@ export default function StartGame() {
   const [loading, setLoading] = useState(false);
 
   const { state } = useLocation();
-  const questions = state;
+  const { questions, currentDifficulty, currentCategories } = state;
   const { question, correctAnswer, incorrectAnswers } =
     questions[questionIndex];
 
@@ -32,6 +33,13 @@ export default function StartGame() {
         selectedAnswer?.classList.add('wrong');
       }
       if (questionIndex === questions.length - 1) {
+        // last question, add final score to data base
+        createRecord('scores', {
+          score,
+          difficulty: currentDifficulty,
+          category: currentCategories,
+          userId: getCurrentUserId(),
+        });
         setTimeout(
           () =>
             navigate(`/Results`, {

@@ -17,13 +17,14 @@ export function App() {
   const user = useCurrentUser();
 
   return (
-    <ThinBackend requireLogin>
-      <div className="header">
+    <ThinBackend>
+    {/* <ThinBackend requireLogin> */}
+      {/* <div className="header">
         <b>{user?.email}</b>
         <button type="button" onClick={logout}>
           Logout
         </button>
-      </div>
+      </div> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/QuickPlay" element={<QuickPlay />} />

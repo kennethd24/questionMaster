@@ -49,7 +49,9 @@ export default function QuickPlay() {
       const response = await fetch(url);
       const questions = await response.json();
 
-      navigate(`/StartGame/${name}`, { state: questions });
+      navigate(`/StartGame/${name}`, {
+        state: { questions, currentDifficulty, currentCategories },
+      });
     } catch (error: unknown) {
       navigate('/NotFound', { state: error });
     }
