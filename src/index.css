@@ -126,11 +126,11 @@ button {
     transition: 0.3s;
   }
   .correct:hover {
-    background-color:#7fa46d;
+    background-color:#83BFA9;
     transition: 0.1s;
   }
   .wrong:hover  {
-    background-color:#b72a16;
+    background-color:#D68A8A;
     transition: 0.1s;
   }
   .omrs-input-underlined > input:hover {
